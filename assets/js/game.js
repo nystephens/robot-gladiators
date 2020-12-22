@@ -1,19 +1,52 @@
-//this code asks for robot's name.
-
 var playerName = window.prompt("What is your robot's name?");
+var playerHealth = 100;
+var playerAttack = 10;
 
-console.log(playerName);
+// You can also log multiple values at once like this 
+console.log(playerName, playerAttack, playerHealth);
 
-console.log("this logs a string, good for leaving yourself a message");
-// this will do math and log 20
-console.log(10 + 10);
-// what is this?
-console.log("Our robot's name is " + playerName);
+var enemyName = "Roborto";
+var enemyHealth = 50;
+var enemyAttack = 12;
 
-// this creates a function named "fight"
+var fight = function() {
+    // alert players that they are starting the round
+    window.alert("Welcome to Robot Gladiators!");
+    
+    //subtract the value of 'playerAttack' from the value of 'enemyHealth' and use that result to update the value of the 'enemyHealth' variable
+    enemyHealth = enemyHealth - playerAttack;
+    
+    //Log a resulting message to the console so that we know it worked
+    console.log(
+        playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
+    );
 
-function fight() {
-    window.alert("The fight has begun!");
-}
+    //Subtract the value of 'enemyAttack' from the value of 'playerhealth' and use that result to update the value of the 'playerHealth' variable
+    playerHealth = playerHealth - enemyAttack;
 
-// fight();
+    //Log a resulting message to the console so we know that it worked.
+    console.log(
+        enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
+    );
+
+    //check player's health
+    if (playerHealth <= 0) {
+        window.alert(playerName + " has died!");
+    }
+    else {
+        window.alert(playerName + " still has " + playerHealth + " health left.");
+    }
+
+    // check enemy's health
+
+    if (enemyHealth <= 0) {
+        window.alert(enemyName + " has died!");
+    }
+    else {
+        window.alert(enemyName + " still has " + enemyHealth + " health left.");
+    }
+
+};
+
+ fight();
+
