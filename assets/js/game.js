@@ -25,10 +25,14 @@ let enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 let enemyHealth = 50;
 let enemyAttack = 12;
 
-// fight function expression
-let fight = function(enemyName) {
     // alert players that they are starting the round
     window.alert("Welcome to Robot Gladiators!");
+
+
+// fight function expression
+let fight = function(enemyName) {
+    // repeat and excecute as long as the enemy robot is alive
+    while(enemyHealth > 0) {
 
     let promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
     console.log (promptFight);
@@ -82,8 +86,19 @@ let fight = function(enemyName) {
 } else {
     window.alert("You need to choose a valid option. Try Again!");
 }
+    }
 }
 
+// for (let i = 0; i < enemyNames.length; i++) {
+//     debugger;
+//     // call fight function with enemy robot
+//     // fight(enemyNames[i]);
+// }
+
  for(let i = 0; i <enemyNames.length; i++) {
-     fight(enemyNames[i]);
+    let pickedEnemyName = enemyNames[i];
+    enemyHealth = 50; 
+    fight(enemyNames[i]);
  }
+
+
