@@ -18,6 +18,12 @@ console.log(enemyNames[2]);
 // function to start new game
 // function to end the entire game
 
+let randomNumber = function() {
+    let value = Math.floor(Math.random() * (max - min + 1) + min);
+
+    return value;
+};
+
 
 let startGame = function(){
     // reset player stats
@@ -35,7 +41,7 @@ for (let i = 0; i < enemyNames.length; i++) {
     let pickedEnemyName = enemyNames[i];
 
     // reset enemyHealth before starting new fight
-    enemyHealth = 50;
+    enemyHealth = randomNumber(40, 60);
 
     // use debugger to pause script from running and check what's going on at that moment in the code
     // debugger;
@@ -95,14 +101,17 @@ let fight = function(enemyName) {
         if (confirmSkip) {
           window.alert(playerName + ' has decided to skip this fight. Goodbye!');
           // subtract money from playerMoney for skipping
-          playerMoney = playerMoney - 10;
+          playerMoney = Math.max(playerMoney - 10);
   
           break;
         }
       }
   
       // remove enemy's health by subtracting the amount set in the playerAttack letiable
-      enemyHealth = enemyHealth - playerAttack;
+    //   generate random damage value based on player's attack power
+      let damage = randomNumber(playerAttack - 3, playerAttack);
+
+      enemyHealth = Math.max(0, enemyHealth - damage);
       console.log(
         playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
       );
@@ -127,8 +136,9 @@ let fight = function(enemyName) {
         window.alert(enemyName + ' still has ' + enemyHealth + ' health left.');
       }
   
-      // remove players's health by subtracting the amount set in the enemyAttack letiable
-      playerHealth = playerHealth - enemyAttack;
+      // remove players's health by subtracting the amount set in the enemyAttack variable
+
+      playerHealth = Math.max(0, playerHealth - damage);
       console.log(
         enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.'
       );
